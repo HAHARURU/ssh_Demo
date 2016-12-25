@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.muke.ssh.domain.Department" table="department">
+		<id name="did" column="did">
+			<generator class="native"/>
+		</id>
+		<property name="dname" column="dname" length="20"/>
+		<property name="ddesc" column="ddesc"	length="100"></property>
+		
+		<!-- 关联关系 -->
+		<!-- 	级联删除 cascade, inverse放弃外键关联，使得在一方修改，另一方也会改变 -->
+		<set name="employees" cascade="delete" inverse="true">
+			<key column="dno"></key>
+			<one-to-many class="cn.muke.ssh.domain.Employee"/>
+		</set>
+	</class>
+</hibernate-mapping>

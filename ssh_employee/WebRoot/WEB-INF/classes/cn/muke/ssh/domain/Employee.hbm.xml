@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.muke.ssh.domain.Employee" table="employee">
+		<id name="eid" column="eid">
+			<generator class="native"/>
+		</id>
+		<property name="ename" column="ename" length="20"/>
+		<property name="esex" column="esex" length="20"/>
+		<property name="birthday" column="birthday" />
+		<property name="joinday" column="joinday" />
+		<property name="eno" column="eno" length="20"/>
+		<property name="uesrname" column="uesrname" length="20"/>
+		<property name="password" column="password" length="20"/>
+		
+		<!-- 关联关系 -->
+		<many-to-one name="department"	class="cn.muke.ssh.domain.Department"  lazy="false" column="dno"></many-to-one>
+		
+	</class>
+</hibernate-mapping>
