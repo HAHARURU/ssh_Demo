@@ -35,42 +35,25 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 		return department;
 	}
 	
-	//Ìá¹©²éÑ¯·½·¨
+	//æä¾›æŸ¥è¯¢æ–¹æ³•
 	public String findAll() {
 		PageBean<Department> departmentPageBean = departmentService.findByPage(currPage);
 		ActionContext.getContext().getValueStack().push(departmentPageBean);
 		return "findAll";
 	}
 	
-	//µ÷Õûµ½Ìí¼Ó
+	//è°ƒæ•´åˆ°æ·»åŠ 
 	public String saveUI(){
 		return "saveUI";
 	}
 	
-	//Ìí¼Ó²¿ÃÅ
+	//æ·»åŠ éƒ¨é—¨
 	public String saveInfo(){
 		departmentService.save(department);
-		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);
-		for (int i = 0; i < 10; i++) {
-			final int index = i;
-			fixedThreadPool.execute(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-						System.out.println("@@@@@@"+index);
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			});
-		}
 		return "addSuccess";
 	}
 	
-	//±à¼­²¿ÃÅ
+	//ç¼–è¾‘éƒ¨é—¨
 	public String editById(){
 		department=departmentService.findById(department.getDid());
 		return "editSuccess";
